@@ -1,0 +1,5 @@
+{
+  "name": "Copy of AI Medical Report Analyzer",
+  "description": "An AI-powered application to analyze laboratory and clinical medical reports, providing simplified summaries for patients and detailed academic reports for physicians, with support for English and Arabic.",
+  "requestFramePermissions": []
+}
