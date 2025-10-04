@@ -74,7 +74,8 @@ export const analyzeMedicalReport = async (
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: [{ parts: [imagePart, textPart] }],
+      // FIX: Changed from an array with one item to a single content object, which is cleaner for single-turn requests.
+      contents: { parts: [imagePart, textPart] },
       config: {
         responseMimeType: 'application/json',
         responseSchema: responseSchema,
@@ -83,7 +84,7 @@ export const analyzeMedicalReport = async (
     });
 
     const jsonText = response.text.trim();
-    // It's already an object thanks to responseMimeType, but we parse to be safe and validate structure.
+    // FIX: The response text is a JSON string that needs to be parsed.
     const result: AnalysisResult = JSON.parse(jsonText);
     return result;
 
