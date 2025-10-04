@@ -1,4 +1,3 @@
-
 export const UI_TEXT = {
   en: {
     title: "AI Medical Report Analyzer",
@@ -21,6 +20,11 @@ export const UI_TEXT = {
     status: "Status",
     explanation: "Explanation",
     exportPDF: "Export as PDF",
+    generatingPDF: "Generating PDF...",
+    exportPNG: "Export as PNG",
+    generatingPNG: "Generating PNG...",
+    exportHTML: "Export as HTML",
+    generatingHTML: "Generating HTML...",
     print: "Print",
     welcomeTitle: "Welcome to the AI Medical Report Analyzer",
     welcomeDesc: "Get instant, AI-powered insights from your lab reports. Simply upload a clear image of your report to begin.",
@@ -53,6 +57,11 @@ export const UI_TEXT = {
     status: "الحالة",
     explanation: "التوضيح",
     exportPDF: "تصدير كـ PDF",
+    generatingPDF: "جاري إنشاء PDF...",
+    exportPNG: "تصدير كـ PNG",
+    generatingPNG: "جاري إنشاء PNG...",
+    exportHTML: "تصدير كـ HTML",
+    generatingHTML: "جاري إنشاء HTML...",
     print: "طباعة",
     welcomeTitle: "أهلاً بك في محلل التقارير الطبية بالذكاء الاصطناعي",
     welcomeDesc: "احصل على رؤى فورية مدعومة بالذكاء الاصطناعي من تقارير المختبر الخاصة بك. ما عليك سوى تحميل صورة واضحة لتقريرك للبدء.",
