@@ -26,6 +26,11 @@ export const UI_TEXT = {
     welcomeStep3: 'Receive a detailed summary.',
 
     // Report Display
+    patientInformationTitle: 'Patient & Report Information',
+    name: 'Name',
+    age: 'Age',
+    testDate: 'Test Date',
+    testType: 'Test Type',
     patientSummaryTitle: 'Patient Summary',
     physicianReportTitle: 'Physician Report',
     recommendationsTitle: 'Recommendations',
@@ -77,6 +82,11 @@ export const UI_TEXT = {
     welcomeStep3: 'احصل على ملخص مفصل.',
 
     // Report Display
+    patientInformationTitle: 'معلومات المريض والتقرير',
+    name: 'الاسم',
+    age: 'العمر',
+    testDate: 'تاريخ الفحص',
+    testType: 'نوع الفحص',
     patientSummaryTitle: 'ملخص المريض',
     physicianReportTitle: 'تقرير الطبيب',
     recommendationsTitle: 'التوصيات',

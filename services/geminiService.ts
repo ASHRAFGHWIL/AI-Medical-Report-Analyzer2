@@ -14,7 +14,10 @@ const getPrompt = (language: Language) => {
 
   return `
     You are an expert AI in medical report analysis, trained on WHO and NIH standards.
-    Analyze the provided medical lab report image. Identify key metrics, compare them to standard reference ranges, and classify each as 'normal', 'moderate', or 'severe' based on deviation from the norm.
+    Analyze the provided medical lab report image.
+    First, extract the following patient information: Name, Age, Date of the medical test, and the Type of medical test (e.g., "Complete Blood Count", "Lipid Panel"). If any of this information is not present, use a placeholder like "Not specified".
+    
+    Next, identify key metrics, compare them to standard reference ranges, and classify each as 'normal', 'moderate', or 'severe' based on deviation from the norm.
     Provide a simplified summary for a patient, a detailed academic report for a physician, and actionable recommendations.
     You MUST provide your response as a single, valid JSON object with no surrounding text or markdown.
     ${langInstruction}
@@ -24,6 +27,17 @@ const getPrompt = (language: Language) => {
 const responseSchema = {
   type: Type.OBJECT,
   properties: {
+    patientDetails: {
+      type: Type.OBJECT,
+      description: "Patient's demographic and test information.",
+      properties: {
+        name: { type: Type.STRING, description: "The patient's full name as it appears on the report." },
+        age: { type: Type.STRING, description: "The patient's age as it appears on the report." },
+        testDate: { type: Type.STRING, description: "The date the medical test was conducted." },
+        testType: { type: Type.STRING, description: "The name or type of the medical test (e.g., 'CBC', 'Lipid Profile')." },
+      },
+      required: ["name", "age", "testDate", "testType"],
+    },
     patientSummary: {
       type: Type.STRING,
       description: "A simplified, easy-to-understand summary of the key findings for the patient.",
@@ -52,7 +66,7 @@ const responseSchema = {
       required: ["general", "nutrition", "physicalTherapy"]
     }
   },
-  required: ["patientSummary", "physicianReport", "recommendations"],
+  required: ["patientDetails", "patientSummary", "physicianReport", "recommendations"],
 };
 
 export const analyzeMedicalReport = async (

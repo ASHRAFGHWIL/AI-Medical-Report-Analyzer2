@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import type { AnalysisResult, Language, PhysicianReportItem } from '../types';
 import { UI_TEXT } from '../constants';
-import { UserIcon, AcademicCapIcon, ClipboardDocumentListIcon, PrinterIcon, ExclamationTriangleIcon, ChevronDownIcon, PhotoIcon, CodeBracketIcon, ArrowDownTrayIcon } from './Icons';
+import { UserIcon, AcademicCapIcon, ClipboardDocumentListIcon, PrinterIcon, ExclamationTriangleIcon, ChevronDownIcon, PhotoIcon, CodeBracketIcon, ArrowDownTrayIcon, UserCircleIcon } from './Icons';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -198,6 +198,18 @@ export const ReportDisplay: React.FC<ReportDisplayProps> = ({ result, language }
       </div>
 
       <div ref={reportRef} className="space-y-8 mt-4">
+        {/* Patient & Report Information */}
+        {result.patientDetails && (
+          <ReportSection icon={<UserCircleIcon />} title={text.patientInformationTitle}>
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
+              <InfoItem label={text.name} value={result.patientDetails.name} />
+              <InfoItem label={text.age} value={result.patientDetails.age} />
+              <InfoItem label={text.testDate} value={result.patientDetails.testDate} />
+              <InfoItem label={text.testType} value={result.patientDetails.testType} />
+            </dl>
+          </ReportSection>
+        )}
+
         {/* Patient Summary */}
         <ReportSection icon={<UserIcon />} title={text.patientSummaryTitle}>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">{result.patientSummary}</p>
@@ -291,3 +303,10 @@ const MenuItem: React.FC<{ icon: React.ReactNode; onClick: () => void; text: str
     {text}
   </button>
 );
+
+const InfoItem: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+    <div className="sm:col-span-1">
+      <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{label}</dt>
+      <dd className="mt-1 text-base font-semibold text-gray-900 dark:text-white">{value || 'N/A'}</dd>
+    </div>
+  );

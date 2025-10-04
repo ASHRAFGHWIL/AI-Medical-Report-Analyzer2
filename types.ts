@@ -1,6 +1,13 @@
 
 export type Language = 'en' | 'ar';
 
+export interface PatientDetails {
+  name: string;
+  age: string;
+  testDate: string;
+  testType: string;
+}
+
 export interface PhysicianReportItem {
   parameter: string;
   value: string;
@@ -16,6 +23,7 @@ export interface Recommendations {
 }
 
 export interface AnalysisResult {
+  patientDetails: PatientDetails;
   patientSummary: string;
   physicianReport: PhysicianReportItem[];
   recommendations: Recommendations;
